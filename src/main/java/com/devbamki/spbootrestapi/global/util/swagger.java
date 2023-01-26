@@ -1,4 +1,4 @@
-package com.devbamki.spbootrestapi.util;
+package com.devbamki.spbootrestapi.global.util;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
