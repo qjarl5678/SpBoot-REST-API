@@ -17,7 +17,7 @@ public class LoginService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.findByUserName(username).orElseThrow(()->new UsernameNotFoundException("아이디가 없습니다."));
+        Member member = memberRepository.findByUserId(username).orElseThrow(()->new UsernameNotFoundException("아이디가 없습니다."));
 
         return User.builder().username(member.getUserName())
                 .password(member.getUserPw())

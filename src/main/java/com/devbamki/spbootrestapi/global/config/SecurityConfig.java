@@ -5,6 +5,7 @@ import com.devbamki.spbootrestapi.global.login.filter.JsonUserIdPasswordAuthenti
 import com.devbamki.spbootrestapi.global.login.handler.LoginFailureHandler;
 import com.devbamki.spbootrestapi.global.login.handler.LoginSuccessJWTProvideHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,15 +19,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final LoginService loginService;
     private final ObjectMapper objectMapper;
-
-    public SecurityConfig(LoginService loginService, ObjectMapper objectMapper) {
-        this.loginService = loginService;
-        this.objectMapper = objectMapper;
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
@@ -53,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManager(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService(loginService);
         return new ProviderManager(provider);
     }
 
