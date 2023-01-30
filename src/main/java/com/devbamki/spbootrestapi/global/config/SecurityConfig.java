@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest().authenticated();
 
-        http.addFilterAfter(jsonUserIdPasswordLoginFilter(), LogoutFilter.class);
+//        http.addFilterAfter(jsonUserIdPasswordLoginFilter(), LogoutFilter.class);
     }
 
     @Bean
@@ -64,15 +64,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new LoginFailureHandler();
     }
 
-    @Bean
-    public JsonUserIdPasswordAuthenticationFilter jsonUserIdPasswordLoginFilter(){
-        JsonUserIdPasswordAuthenticationFilter jsonUserIdPasswordLoginFilter = new JsonUserIdPasswordAuthenticationFilter(objectMapper);
-        jsonUserIdPasswordLoginFilter().setAuthenticationManager(authenticationManager());
-        jsonUserIdPasswordLoginFilter.setAuthenticationSuccessHandler(loginSuccessJWTProvideHandler());
-        jsonUserIdPasswordLoginFilter.setAuthenticationFailureHandler(loginFailureHandler());
-
-        return jsonUserIdPasswordLoginFilter;
-    }
+//    @Bean
+//    public JsonUserIdPasswordAuthenticationFilter jsonUserIdPasswordLoginFilter(){
+//        JsonUserIdPasswordAuthenticationFilter jsonUserIdPasswordLoginFilter = new JsonUserIdPasswordAuthenticationFilter(objectMapper);
+//
+//        jsonUserIdPasswordLoginFilter().setAuthenticationManager(authenticationManager());
+//        jsonUserIdPasswordLoginFilter.setAuthenticationSuccessHandler(loginSuccessJWTProvideHandler());
+//        jsonUserIdPasswordLoginFilter.setAuthenticationFailureHandler(loginFailureHandler());
+//
+//        return jsonUserIdPasswordLoginFilter;
+//    }
 
 
 }
