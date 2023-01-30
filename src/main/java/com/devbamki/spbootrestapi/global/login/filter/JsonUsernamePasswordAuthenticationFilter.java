@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-public class JsonUserIdPasswordAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+public class JsonUsernamePasswordAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     private static final String DEFAULT_LOGIN_REQUEST_URL = "/login"; // /login/oauth2/* 로 오는 요청을 처리
     private static final String HTTP_METHOD = "POST"; // HTTP 메소드는 POST
@@ -32,7 +32,7 @@ public class JsonUserIdPasswordAuthenticationFilter extends AbstractAuthenticati
     private static final AntPathRequestMatcher DEFAULT_LOGIN_PATH_REQUEST_MATCHER =
             new AntPathRequestMatcher(DEFAULT_LOGIN_REQUEST_URL, HTTP_METHOD);
 
-    public JsonUserIdPasswordAuthenticationFilter(ObjectMapper objectMapper){
+    public JsonUsernamePasswordAuthenticationFilter(ObjectMapper objectMapper){
         super(DEFAULT_LOGIN_PATH_REQUEST_MATCHER); // 위에서 설정한 /login/oauth2/* 의 요청에 GET 요청 처리
 
         this.objectMapper = objectMapper;

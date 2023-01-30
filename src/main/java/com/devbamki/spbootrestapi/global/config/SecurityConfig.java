@@ -1,7 +1,7 @@
 package com.devbamki.spbootrestapi.global.config;
 
 import com.devbamki.spbootrestapi.domain.member.service.LoginService;
-import com.devbamki.spbootrestapi.global.login.filter.JsonUserIdPasswordAuthenticationFilter;
+import com.devbamki.spbootrestapi.global.login.filter.JsonUsernamePasswordAuthenticationFilter;
 import com.devbamki.spbootrestapi.global.login.handler.LoginFailureHandler;
 import com.devbamki.spbootrestapi.global.login.handler.LoginSuccessJWTProvideHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest().authenticated();
 
-//        http.addFilterAfter(jsonUserIdPasswordLoginFilter(), LogoutFilter.class);
+        http.addFilterAfter(jsonUsernamePasswordAuthenticationFilter(), LogoutFilter.class);
     }
 
     @Bean
@@ -64,16 +64,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new LoginFailureHandler();
     }
 
-//    @Bean
-//    public JsonUserIdPasswordAuthenticationFilter jsonUserIdPasswordLoginFilter(){
-//        JsonUserIdPasswordAuthenticationFilter jsonUserIdPasswordLoginFilter = new JsonUserIdPasswordAuthenticationFilter(objectMapper);
-//
-//        jsonUserIdPasswordLoginFilter().setAuthenticationManager(authenticationManager());
-//        jsonUserIdPasswordLoginFilter.setAuthenticationSuccessHandler(loginSuccessJWTProvideHandler());
-//        jsonUserIdPasswordLoginFilter.setAuthenticationFailureHandler(loginFailureHandler());
-//
-//        return jsonUserIdPasswordLoginFilter;
-//    }
+    @Bean
+    public JsonUsernamePasswordAuthenticationFilter jsonUsernamePasswordAuthenticationFilter(){
+        JsonUsernamePasswordAuthenticationFilter jsonUsernamePasswordAuthenticationFilter = new JsonUsernamePasswordAuthenticationFilter(objectMapper);
+
+        jsonUsernamePasswordAuthenticationFilter.setAuthenticationManager(authenticationManager());
+        jsonUsernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(loginSuccessJWTProvideHandler());
+        jsonUsernamePasswordAuthenticationFilter.setAuthenticationFailureHandler(loginFailureHandler());
+
+        return jsonUsernamePasswordAuthenticationFilter;
+    }
 
 
 }
