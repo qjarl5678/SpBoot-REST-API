@@ -35,6 +35,14 @@ public class Member extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Role role; //권한
 
+    @Column(length = 1000)
+    private String refreshToken; //Refresh Token
+
+    /** Refresh Token 초기화 */
+    public void destoryRefreshToken(){
+        this.refreshToken = null;
+    }
+
     /** 사용자 정보 수정 */
     public void changePw(PasswordEncoder passwordEncoder, String userPw){
         this.userPw = passwordEncoder.encode(userPw);
