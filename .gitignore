@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 **/src/main/resources/jdbc.properties
+**/src/main/resources/jwt.properties
 ### STS ###
 .apt_generated
 .classpath

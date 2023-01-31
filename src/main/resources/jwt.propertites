@@ -1,0 +1,5 @@
+jwt.secret=devbamki123devbamki456
+access.expiration=80
+access.header=Authorization
+refresh.expiration=90
+refresh.header=Authorization-refresh
